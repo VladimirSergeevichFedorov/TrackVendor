@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Trackvendor</string>
+    <string name="wifi_name">Имя стеи wifi: </string>
+    <string name="connection_date_wifi">Дата и время: </string>
+    <string name="state_wifi">Состояние wifi: </string>
+    <string name="unknown_name_wifi">Неизвестно</string>
+    <string name="unknown_ssid">unknown ssid</string>
+    <string name="turn_on">on </string>
+    <string name="turn_off">off </string>
+    <string name="retrofit_gson_date_format">yyyy-MM-dd HH:mm:ss</string>
+    <string name="tap_to_navigate">Загрузить базу данных</string>
+    <string name="delete_all_data">Очистить таблицу</string>
+</resources>

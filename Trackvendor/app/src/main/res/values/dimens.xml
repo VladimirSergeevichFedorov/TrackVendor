@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="alpha_for_button" format="float" type="dimen">0.85</item>
+    <item name="offset_for_x" format="float" type="dimen">5.0</item>
+    <item name="offset_for_y" format="float" type="dimen">3.0</item>
+    <dimen name="five_padding">5.dp</dimen>
+    <dimen name="six_padding">6.dp</dimen>
+    <dimen name="fifteen_padding">15.dp</dimen>
+    <dimen name="twenty_padding">20.dp</dimen>
+    <dimen name="fifty_padding">50.dp</dimen>
+</resources>
