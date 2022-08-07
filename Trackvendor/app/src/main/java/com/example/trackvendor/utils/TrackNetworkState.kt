@@ -22,13 +22,12 @@ class TrackNetworkState @AssistedInject constructor(
     private val context: Context
 ) {
 
-    fun networkCallBack(
-    ): ConnectivityManager.NetworkCallback {
+    fun networkCallBack(): ConnectivityManager.NetworkCallback {
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             object : ConnectivityManager.NetworkCallback(FLAG_INCLUDE_LOCATION_INFO) {
 
-                override fun onLost(network: Network) {    //when Wifi 【turns off】
+                override fun onLost(network: Network) { // when Wifi 【turns off】
                     super.onLost(network)
                     val ssid = context.getString(R.string.unknown_ssid)
                     val dateFormat =
@@ -37,7 +36,6 @@ class TrackNetworkState @AssistedInject constructor(
                     paramsNetworkState.invoke(ssid, currentDate, false)
                     Toast.makeText(context, "Wifi turns off!", Toast.LENGTH_SHORT).show()
                 }
-
 
                 override fun onCapabilitiesChanged(
                     network: Network,
@@ -51,7 +49,6 @@ class TrackNetworkState @AssistedInject constructor(
 
                     val wifiInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         networkCapabilities.transportInfo as WifiInfo?
-
                     } else {
                         TODO("VERSION.SDK_INT < Q")
                     }
@@ -59,12 +56,11 @@ class TrackNetworkState @AssistedInject constructor(
                     paramsNetworkState.invoke(ssid.orEmpty(), currentDate, true)
                     Toast.makeText(context, "$ssid", Toast.LENGTH_SHORT).show()
                 }
-
             }
         } else {
             object : ConnectivityManager.NetworkCallback() {
                 @SuppressLint("SimpleDateFormat")
-                override fun onAvailable(network: Network) {    //when Wifi is on
+                override fun onAvailable(network: Network) { // when Wifi is on
                     super.onAvailable(network)
                     val sdf =
                         SimpleDateFormat(context.getString(R.string.retrofit_gson_date_format))
@@ -74,11 +70,11 @@ class TrackNetworkState @AssistedInject constructor(
                     val wifiInfo: WifiInfo = wifiManager.connectionInfo
                     val ssid = wifiInfo.ssid
                     paramsNetworkState.invoke(ssid, currentDate, true)
-                    Toast.makeText(context, "$ssid ${currentDate}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "$ssid $currentDate", Toast.LENGTH_SHORT).show()
                 }
 
                 @SuppressLint("SimpleDateFormat")
-                override fun onLost(network: Network) {    //when Wifi 【turns off】
+                override fun onLost(network: Network) { // when Wifi 【turns off】
                     super.onLost(network)
                     val sdf =
                         SimpleDateFormat(context.getString(R.string.retrofit_gson_date_format))

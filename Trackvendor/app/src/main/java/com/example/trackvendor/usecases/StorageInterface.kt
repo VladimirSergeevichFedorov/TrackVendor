@@ -4,7 +4,7 @@ import com.example.trackvendor.storage.entities.ConnectionState
 import kotlinx.coroutines.flow.Flow
 
 interface StorageInterface {
-      suspend fun saveConnectData(
+    suspend fun saveConnectData(
         connectingChangeDataKey: String,
         connectingChangeData: String,
         stateWiFi: Boolean,

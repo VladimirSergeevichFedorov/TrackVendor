@@ -29,22 +29,25 @@ class TrackWiFiWorker @AssistedInject constructor(
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     override suspend fun doWork(): Result {
-       return try {
-           val a = trackNetworkState.create { nameWifi, dateWiFikState, stateWiFi ->
-               scope.launch {
-                   storageImpl.saveConnectData(
-                       connectingChangeDataKey = dateWiFikState,
-                       connectingChangeData = dateWiFikState,
-                       stateWiFi = stateWiFi,
-                       nameWifi = nameWifi)
-               }
-           }
+        return try {
+            val networkState = trackNetworkState.create { nameWifi, dateWiFikState, stateWiFi ->
+                scope.launch {
+                    storageImpl.saveConnectData(
+                        connectingChangeDataKey = dateWiFikState,
+                        connectingChangeData = dateWiFikState,
+                        stateWiFi = stateWiFi,
+                        nameWifi = nameWifi
+                    )
+                }
+            }
 
-           getConnectivityManager().registerNetworkCallback(networkRequest,a.networkCallBack())
-           Result.success()
-
-        } catch (throwable: Throwable){
-           Result.failure()
+            getConnectivityManager().registerNetworkCallback(
+                networkRequest,
+                networkState.networkCallBack()
+            )
+            Result.success()
+        } catch (throwable: Throwable) {
+            Result.failure()
         }
     }
 
@@ -52,5 +55,4 @@ class TrackWiFiWorker @AssistedInject constructor(
     interface Factory {
         fun create(appContext: Context, params: WorkerParameters): TrackWiFiWorker
     }
-
 }
