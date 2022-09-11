@@ -15,7 +15,8 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+
 
 class TrackNetworkState @AssistedInject constructor(
     @Assisted("paramsNetworkState") val paramsNetworkState: (nameWifi: String, dateWifiState: String, stateWiFi: Boolean) -> Unit,
@@ -27,6 +28,7 @@ class TrackNetworkState @AssistedInject constructor(
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             object : ConnectivityManager.NetworkCallback(FLAG_INCLUDE_LOCATION_INFO) {
 
+                @SuppressLint("SimpleDateFormat")
                 override fun onLost(network: Network) { // when Wifi 【turns off】
                     super.onLost(network)
                     val ssid = context.getString(R.string.unknown_ssid)
@@ -37,6 +39,7 @@ class TrackNetworkState @AssistedInject constructor(
                     Toast.makeText(context, "Wifi turns off!", Toast.LENGTH_SHORT).show()
                 }
 
+                @SuppressLint("SimpleDateFormat")
                 override fun onCapabilitiesChanged(
                     network: Network,
                     networkCapabilities: NetworkCapabilities

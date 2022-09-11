@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 import javax.inject.Inject
 
 class WorkerFactory @Inject constructor(
-    private val workerFactory: TrackWiFiWorker.Factory,
+    private val workerFactory: TrackWiFiWorker.Factory
 ) : WorkerFactory() {
 
     override fun createWorker(

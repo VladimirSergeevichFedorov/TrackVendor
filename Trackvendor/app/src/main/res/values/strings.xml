@@ -10,4 +10,6 @@
     <string name="retrofit_gson_date_format">yyyy-MM-dd HH:mm:ss</string>
     <string name="tap_to_navigate">Загрузить базу данных</string>
     <string name="delete_all_data">Очистить таблицу</string>
+    <string name="notification_title">Trackvendor service is running</string>
+    <string name="service_not">Service Notifications</string>
 </resources>
