@@ -70,7 +70,6 @@ fun MainScreen(
     ) {
         LazyColumn(
             modifier = Modifier
-//                .padding(bottom = dimensionResource(R.dimen.fifty_padding))
                 .background(MaterialTheme.colors.onPrimary)
         ) {
             if (usersData.isNotEmpty()) {

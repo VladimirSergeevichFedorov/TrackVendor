@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StatusConnectionWiFiDao {
-    //    @Query("SELECT * FROM user")
-//    suspend fun getAll(): List<User>
+
     @Query("SELECT * FROM connectionState")
     fun getAll(): Flow<List<ConnectionState>>
 

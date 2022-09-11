@@ -27,7 +27,6 @@ class StorageImpl @Inject constructor(
 
 
     override suspend fun getConnectData(): Flow<List<ConnectionState>> {
-//        return connection.getUser(1)
         return database.statusConnectionWiFiDaoDao().getAll()
     }
 
